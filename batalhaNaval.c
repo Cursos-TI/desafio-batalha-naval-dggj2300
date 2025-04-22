@@ -75,6 +75,64 @@ int main() {
             printf("Erro: navio 2 ultrapassa os limites do tabuleiro.\n");
     }
 
+
+    //DETERMINANDO O TAMANHO E POSIÇÃO DO NAVIO 3
+
+    int linha3 = 2;
+    int coluna3 = 3;
+    int tamanho3 = 3;
+
+    //VERIFICANDO SE O NAVIO NÃO ULTRAPASSA O TAMANHO DO TABULEIRO
+    if (linha3 + tamanho3 <= 10 && coluna3 + tamanho3 <= 10) {
+        int sobreposicao = 0;
+
+        //VERIFICANDO SE O NAVIO NÃO ESTÁ SE SOBREPONDO SOBRE OUTRO
+        for (i = 0; i < tamanho3; i++) {
+            if (tabuleiro[linha3 + i][coluna3 + i] != 0) {
+                sobreposicao = 1;
+                break;
+            }
+        }
+        //POSICIONANDO O NAVIO PREENCHENDO COM NUMERO 3
+        if (sobreposicao == 0) {
+            for (i = 0; i < tamanho3; i++) {
+                tabuleiro[linha3 + i][coluna3 + i] = 3;
+            }
+        } else {
+            printf("Erro: sobreposição detectada no navio diagonal 1. \n");
+        }
+    } else {
+        printf("Erro: navio diagonal 1 ultrapassa os limites do tabuleiro. \n");
+    }
+
+    //DETERMINANDO O TAMANHO E POSIÇÃO DO NAVIO 4
+    int linha4 = 6;
+    int coluna4 = 2;
+    int tamanho4 = 3;
+
+    //VERIFICANDO SE O NAVIO NÃO ULTRAPASSA O TAMANHO DO TABULEIRO
+    if (linha4 + tamanho4 <= 10 && coluna4 - (tamanho4 - 1) >= 0) {
+        int sobreposicao = 0;
+
+        //VERIFICANDO SE O NAVIO NÃO ESTÁ SE SOBREPONDO SOBRE OUTRO
+        for (i = 0; i < tamanho4; i++) {
+            if (tabuleiro[linha4 + i][coluna4 - i] != 0) {
+                sobreposicao = 1;
+                break;
+            }
+        }
+        //POSICIONANDO O NAVIO PREENCHENDO COM NUMERO 3
+        if (sobreposicao == 0) {
+            for (i = 0; i < tamanho4; i++) {
+                tabuleiro[linha4 + i][coluna4 - i] = 3;
+            }
+        } else {
+            printf("Erro: sobreposição detectada no navio diagonal 1. \n");
+        }
+    } else {
+        printf("Erro: navio diagonal 1 ultrapassa os limites do tabuleiro. \n");
+    }
+
     //COLOCANDO AS LETRAS NA PARTE DE CIMA DO TABULEIRO
     printf("   ");
     for (j = 0; j < 10; j++) {
