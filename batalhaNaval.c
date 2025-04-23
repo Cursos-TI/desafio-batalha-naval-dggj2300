@@ -133,6 +133,80 @@ int main() {
         printf("Erro: navio diagonal 1 ultrapassa os limites do tabuleiro. \n");
     }
 
+      // === MATRIZES DAS HABILIDADES ===
+    int cone[5][5], cruz[5][5], octaedro[5][5];
+
+    for (i = 0; i < 5; i++) {
+        for (j = 0; j < 5; j++) {
+            // Cone (forma piramidal apontando para baixo)
+            if ((i == 0 && j == 2) || (i == 1 && j >= 1 && j <= 3) || (i == 2)) cone[i][j] = 1;
+            else cone[i][j] = 0;
+
+            // Cruz
+            if (i == 2 || j == 2) cruz[i][j] = 1;
+            else cruz[i][j] = 0;
+
+            // Octaedro (losango)
+            int dx = i - 2;
+            int dy = j - 2;
+            if (dx < 0) dx = -dx;
+            if (dy < 0) dy = -dy;
+            if (dx + dy <= 2) octaedro[i][j] = 1;
+            else octaedro[i][j] = 0;
+        }
+    }
+
+    // === APLICANDO HABILIDADES ===
+    int origemLinha, origemColuna;
+
+    // Cone no ponto (2, 4)
+    origemLinha = 2;
+    origemColuna = 4;
+    for (i = 0; i < 5; i++) {
+        for (j = 0; j < 5; j++) {
+            if (cone[i][j] == 1) {
+                int li = origemLinha - 2 + i;
+                int co = origemColuna - 2 + j;
+                if (li >= 0 && li < 10 && co >= 0 && co < 10) {
+                    if (tabuleiro[li][co] == 3) tabuleiro[li][co] = 5;
+                    else if (tabuleiro[li][co] == 0) tabuleiro[li][co] = 1;
+                }
+            }
+        }
+    }
+
+    // Cruz no ponto (5,5)
+    origemLinha = 5;
+    origemColuna = 5;
+    for (i = 0; i < 5; i++) {
+        for (j = 0; j < 5; j++) {
+            if (cruz[i][j] == 1) {
+                int li = origemLinha - 2 + i;
+                int co = origemColuna - 2 + j;
+                if (li >= 0 && li < 10 && co >= 0 && co < 10) {
+                    if (tabuleiro[li][co] == 3) tabuleiro[li][co] = 5;
+                    else if (tabuleiro[li][co] == 0) tabuleiro[li][co] = 1;
+                }
+            }
+        }
+    }
+
+    // Octaedro no ponto (7,7)
+    origemLinha = 7;
+    origemColuna = 7;
+    for (i = 0; i < 5; i++) {
+        for (j = 0; j < 5; j++) {
+            if (octaedro[i][j] == 1) {
+                int li = origemLinha - 2 + i;
+                int co = origemColuna - 2 + j;
+                if (li >= 0 && li < 10 && co >= 0 && co < 10) {
+                    if (tabuleiro[li][co] == 3) tabuleiro[li][co] = 5;
+                    else if (tabuleiro[li][co] == 0) tabuleiro[li][co] = 1;
+                }
+            }
+        }
+    }
+
     //COLOCANDO AS LETRAS NA PARTE DE CIMA DO TABULEIRO
     printf("   ");
     for (j = 0; j < 10; j++) {
